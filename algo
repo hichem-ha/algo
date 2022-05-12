@@ -1,0 +1,46 @@
+ALGORITHM checkpoint
+VAR
+
+    sentence: string;
+    i,e,n: INTEGER := 0; 
+
+BEGIN
+
+REPEAT
+    write("write a sentence that ends with a point");
+    read(sentence);
+UNTIL (sentence[0]<>'') //to ensure that the user enters a sentence
+
+
+
+WHILE (sentence[i]<>'.') DO  //the sentence ends if you type a point
+    IF (sentence[i]=' ') THEN //Search for spaces
+        e := e+1;
+    ELSE
+        SWITCH (sentence[i]) DO //search for vowels
+            case "a" : n := n+1; break;
+            case "e" : n := n+1; break;
+            case "o" : n := n+1; break;
+            case "u" : n := n+1; break;
+            case "i" : n := n+1; break;
+            case "y" : n := n+1; break;
+        END_SWITCH
+    END_IF    
+        i := i+1;
+END_WHILE
+
+
+    write("length of the sentence = ", i+1);
+    write("nbr of vowels =", n);
+
+//the sentence can start with a space and/or end with a space before the point
+
+IF ((sentence[0]=' ' and sentence[i-1]<>' ') or (sentence[0]<>' ' and sentence[i-1]=' ') ) THEN
+    write("Nbr of words =", e);   
+ELSE_IF (sentence[0]=' ' and sentence[i-1]=' ') THEN
+    write("Nbr of words =", e-1);
+ELSE
+    write("Nbr of words =", e+1);
+END_IF
+
+END
